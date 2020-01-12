@@ -20,12 +20,12 @@ router.get("/transactions", async (req, res) => {
 
 router.post("/transaction", async (req, res) => {
   let transaction = req.body;
-  console.log(transaction)
+  // console.log(transaction)
   const transactionToAdd = new Transaction(transaction);
 
   try {
     await transactionToAdd.save();
-    console.log(transactionToAdd);
+    // console.log(transactionToAdd);
     const transactions = await Transaction.find({});
     res.status(200).send(transactions);
   } catch (err) {
@@ -35,10 +35,10 @@ router.post("/transaction", async (req, res) => {
 
 router.delete("/transaction/:id", async (req, res) => {
   const id = req.params.id;
-  console.log(`id to delete is ${id}`)
+  // console.log(`id to delete is ${id}`)
   try {
     const deletedTransaction = await Transaction.findByIdAndDelete({ _id: id });
-    console.log(`deletedTransaction is ${deletedTransaction}`)
+    // console.log(`deletedTransaction is ${deletedTransaction}`)
     const transactions = await Transaction.find({})
     res.status(200).send(transactions)
   } catch(err) {

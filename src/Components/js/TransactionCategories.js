@@ -47,9 +47,7 @@ const TransactionCategories = (props) => {
     });
 
     const categoriesKeys = Object.keys(categories);
-  
-    
-    console.log("cateogries are ", categories);
+
     return (
           <TableContainer component={Paper} style={isSmallScreen ? tableSizeSmallScreen : tableStyle}>
           <Table className={classes.table} aria-label="simple table">
@@ -78,7 +76,6 @@ const TransactionCategories = (props) => {
           </Table>
         </TableContainer>
     );
-  
 }
 
 export default TransactionCategories;

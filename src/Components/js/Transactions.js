@@ -55,7 +55,7 @@ export default function SimpleTable(props) {
               <TableCell  className={transaction.amount < 0 ? classes.withdraw : classes.deposit} >{transaction.vendor}</TableCell>
               <TableCell align="center" className={transaction.amount < 0 ? classes.withdraw : classes.deposit}>{props.formatter.format(transaction.amount)}</TableCell>
               <TableCell align="center" className={transaction.amount < 0 ? classes.withdraw : classes.deposit}>{transaction.category}</TableCell>
-              <TableCell align="center" ><DeleteIcon onClick={() => {console.log(props); props.deleteTransaction(transaction._id)}} /></TableCell>
+              <TableCell align="center" ><DeleteIcon onClick={() => props.deleteTransaction(transaction._id)} /></TableCell>
             </TableRow>
           ))}
         </TableBody>

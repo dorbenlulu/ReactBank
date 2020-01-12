@@ -39,6 +39,7 @@ class Operations extends Component {
       top: "15vh",
       left: "30vw"
     };
+    
     const operationsStyleSmallScreen = {
       position: "relative",
       top: "15vh",

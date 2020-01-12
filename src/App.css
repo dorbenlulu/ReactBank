@@ -1,7 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 body {
   font-family: "Open Sans", sans-serif;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.34)), url("./Components/images/background-image.jpeg");
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.12),
+      rgba(0, 0, 0, 0.34)
+    ),
+    url("./Components/images/background-image.jpeg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

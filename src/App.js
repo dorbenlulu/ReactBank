@@ -28,7 +28,7 @@ class App extends Component {
     // const newTransactions = [...this.state.transactions]
     try {
       const response = await axios.post(
-        "http://localhost:4000/transaction",
+        "/transaction",
         newTransactionToAdd
       );
       const newTransactions = response.data;
@@ -42,7 +42,7 @@ class App extends Component {
   deleteTransaction = async id => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/transaction/${id}`
+        `/transaction/${id}`
       );
       const newTransactions = response.data;
       this.setState({ transactions: newTransactions });
@@ -53,7 +53,7 @@ class App extends Component {
   };
 
   componentDidMount = async () => {
-    const response = await axios.get("http://localhost:4000/transactions");
+    const response = await axios.get("/transactions");
     const transactions = response.data;
     console.log("transactions are ", transactions);
     this.setState({ transactions });

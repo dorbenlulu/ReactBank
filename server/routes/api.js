@@ -5,7 +5,7 @@ const Transaction = require("../models/Transaction");
 router.get("/transactions", async (req, res) => {
   try {
     const transactions = await Transaction.find({});
-    // console.log(transactions)
+    console.log("in transactions(get): transactions are ", transactions)
     if (transactions.length === 0) {
       throw "No transactions were found";
     }

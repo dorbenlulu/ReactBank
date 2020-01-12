@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = pprocess.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 const bodyParser = require("body-parser");
 const path = require("path");
 const api = require("./server/routes/api.js");

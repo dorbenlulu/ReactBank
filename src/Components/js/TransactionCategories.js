@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 const useStyles = makeStyles({
   table: {
     width: "100%"
@@ -22,13 +22,21 @@ const useStyles = makeStyles({
 
 const TransactionCategories = (props) => {
   const classes = useStyles();
-
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
   const tableStyle = {
     position: "relative",
     width: "50%",
     top: "25%", 
     left: "25%"
   }
+
+  const tableSizeSmallScreen = {
+    position: "relative",
+    width: "99vw",
+    top: "25vh",
+    left: "1vw"
+  }
+
   const categories = {};
     props.transactions.forEach(transaction => {
       if (categories[transaction.category]) {
@@ -43,7 +51,7 @@ const TransactionCategories = (props) => {
     
     console.log("cateogries are ", categories);
     return (
-          <TableContainer component={Paper} style={tableStyle}>
+          <TableContainer component={Paper} style={isSmallScreen ? tableSizeSmallScreen : tableStyle}>
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow >
@@ -57,9 +65,15 @@ const TransactionCategories = (props) => {
                   <TableCell  className={categories[key] < 0 ? classes.withdraw : classes.deposit} >
                   {key}
                   </TableCell>
-                  <TableCell align="center" className={categories[key] < 0 ? classes.withdraw : classes.deposit}>{categories[key]}</TableCell>
+                  <TableCell align="center" className={categories[key] < 0 ? classes.withdraw : classes.deposit}>{props.formatter.format(categories[key])}</TableCell>
                 </TableRow>
               ))}
+                <TableRow >
+                  <TableCell >
+                  <b>Total:</b>
+                  </TableCell>
+                  <TableCell align="center" ><b>{props.formatter.format(props.calculateTotal())}</b></TableCell>
+                </TableRow>
             </TableBody>
           </Table>
         </TableContainer>

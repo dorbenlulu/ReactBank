@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles({
   table: {
@@ -19,16 +20,11 @@ const useStyles = makeStyles({
   deposit: {
       color: "green"
   },
-  transactions: {
-    // position: "relative",
-    // top:"25%",
-    // left: "25%"
-  }
 });
 
 export default function SimpleTable(props) {
   const classes = useStyles();
-
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
   const tableStyle = {
     position: "relative",
     width: "50%",
@@ -36,9 +32,15 @@ export default function SimpleTable(props) {
     left: "25%"
   }
 
-  // const deleteTransaction = (id) => props.deleteTransaction(id)
+  const tableSizeSmallScreen = {
+    position: "relative",
+    width: "99vw",
+    top: "25vh",
+    left: "1vw"
+  }
+
   return (
-    <TableContainer component={Paper} className={classes.transactions} style={tableStyle}>
+    <TableContainer component={Paper} style={isSmallScreen ? tableSizeSmallScreen : tableStyle}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow >
@@ -50,10 +52,8 @@ export default function SimpleTable(props) {
         <TableBody>
           {props.transactions.map((transaction, index) => (
             <TableRow key={index} className={transaction.amount < 0 ? classes.withdraw : classes.deposit}>
-              <TableCell  className={transaction.amount < 0 ? classes.withdraw : classes.deposit} >
-                {transaction.vendor}
-              </TableCell>
-              <TableCell align="center" className={transaction.amount < 0 ? classes.withdraw : classes.deposit}>{transaction.amount}</TableCell>
+              <TableCell  className={transaction.amount < 0 ? classes.withdraw : classes.deposit} >{transaction.vendor}</TableCell>
+              <TableCell align="center" className={transaction.amount < 0 ? classes.withdraw : classes.deposit}>{props.formatter.format(transaction.amount)}</TableCell>
               <TableCell align="center" className={transaction.amount < 0 ? classes.withdraw : classes.deposit}>{transaction.category}</TableCell>
               <TableCell align="center" ><DeleteIcon onClick={() => {console.log(props); props.deleteTransaction(transaction._id)}} /></TableCell>
             </TableRow>

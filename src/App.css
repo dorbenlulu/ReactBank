@@ -1,17 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 body {
   font-family: "Open Sans", sans-serif;
-  background-image: url('./Components/images/background-image.jpeg');
+  background-image: linear-gradient(rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.34)), url("./Components/images/background-image.jpeg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   color: white;
 }
-@media only screen and (max-width: 600px) {
-  body {
-    background-color: lightblue;
-  }
-}
+
 #container {
   height: 100vh;
   width: 100vw;
@@ -21,10 +17,32 @@ body {
 #total-balance {
   position: relative;
   font-size: 2vw;
-  top:25%;
-  left: 40%
+  top: 25%;
+  left: 40%;
+}
+
+#no-transactions-msg {
+  position: relative;
+  font-size: 5vw;
+  top: 25%;
+  text-align: center;
 }
 
 a {
   text-decoration: none;
+}
+@media only screen and (max-width: 600px) {
+  #total-balance {
+    position: relative;
+    font-size: 5vw;
+    top: 25vh;
+    left: 30vw;
+  }
+
+  #no-transactions-msg {
+    position: relative;
+    font-size: 5vw;
+    text-align: center;
+    top: 25vh;
+  }
 }

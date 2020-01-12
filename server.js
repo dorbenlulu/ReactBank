@@ -6,7 +6,7 @@ const path = require("path");
 const api = require("./server/routes/api.js");
 const Transaction = require("./server/models/Transaction");
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/BankDB", { useNewUrlParser: true });
+mongoose.connect(/*process.env.MONGODB_URI || */"mongodb://localhost/BankDB", { useNewUrlParser: true });
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
@@ -19,13 +19,12 @@ app.use(function(req, res, next) {
 });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'build')));
-// app.use(express.static(path.join(__dirname, 'node_modules')))
-// app.use(express.static(path.join(__dirname, 'public')))
-// // app.use(express.static(path.join(__dirname, 'src')))
+
 // // app.use(express.static(path.join(__dirname, 'build')))
 app.use("/", api);
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.get('*', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
+
+
 app.listen(port, () => console.log(`Server is running on port ${port}`));
